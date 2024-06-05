@@ -12,6 +12,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "express": "^4.19.2",
@@ -20,6 +21,7 @@
     "md5": "^2.3.0",
     "morgan": "^1.10.0",
     "mysql2": "^3.10.0",
+    "sequelize": "^6.37.3",
     "zod": "^3.23.8"
   },
   "devDependencies": {
