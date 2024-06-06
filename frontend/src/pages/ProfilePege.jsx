@@ -1,7 +1,13 @@
+import { useAuth } from '../context/AuthContext';
 
 function ProfilePege() {
+
+  const { user } = useAuth();
+
   return (
-    <div>ProfilePege</div>
+    <div>
+      {JSON.stringify(user, null, 2)}
+    </div>
   )
 }
 

@@ -6,6 +6,7 @@ import RegisterPage from './pages/RegisterPage'
 import TasksPage from './pages/TasksPage'
 import TaskFormPage from './pages/TaskFormPage'
 import ProfilePege from './pages/ProfilePege'
+import NotFound from './pages/NotFound'
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
       <Route path='/tasks/new' element={<TaskFormPage />} />
       <Route path='/tasks/1/edit' element={<TaskFormPage />} />
       <Route path='/profile' element={<ProfilePege />} />
+      <Route path='*' element={<NotFound />} />
     </Routes>
   )
 }

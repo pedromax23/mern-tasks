@@ -22,9 +22,9 @@ export const login = async (req, res) => {
 
     const token = await createAccessToken({ id: findUser.id })
     res.cookie('token', token, {
-        httpOnly: true,
-        // secure: true,
-        sameSite: 'none',
+        // httpOnly: true,
+        secure: true, // Para que se pueda ver en el navegador
+        sameSite: 'none', // Solo entre dominios se pueden consultar
         maxAge: 24 * 60 * 60 * 1000 // 1 day
     })
 
@@ -52,9 +52,9 @@ export const register = async (req, res, next) => {
 
         const token = await createAccessToken({ id: createUser.id })
         res.cookie('token', token, {
-            httpOnly: true,
-            // secure: true,
-            sameSite: 'none',
+            // httpOnly: true,
+            secure: true, // Para que se pueda ver en el navegador
+            sameSite: 'none', // Solo entre dominios se pueden consultar
             maxAge: 24 * 60 * 60 * 1000 // 1 day
         })
 

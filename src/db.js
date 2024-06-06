@@ -34,12 +34,11 @@ Tarea.init(
         },
         title: {
             type: DataTypes.STRING(100),
-            unique: true,
             allowNull: false
         },
         descripccion: {
             type: DataTypes.TEXT(),
-            allowNull: false
+            allowNull: true
         },
         usuario_id: {
             type: DataTypes.INTEGER(11),

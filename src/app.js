@@ -3,10 +3,15 @@ import morgan from 'morgan';
 import taskRoutes from './routes/tasks.routes.js';
 import authRoutes from './routes/auth.routes.js';
 import cookieParser from 'cookie-parser';
+import cors from 'cors';
 
 const app = express();
 
 // Middlewares
+app.use(cors({
+    origin: 'http://localhost:5173', // Las direcciones que pueden pedir datos a esta api
+    credentials: true // Por que se envian datos por cookies 
+}));
 app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(express.json());
