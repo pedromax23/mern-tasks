@@ -1,4 +1,8 @@
 import { Routes, Route } from 'react-router-dom'
+
+import NavBar from './components/navbar/NavBar'
+import { Container } from './components/ui'
+
 import HomePage from './pages/HomePage'
 import AboutPage from './pages/AboutPage'
 import LoginPage from './pages/LoginPage'
@@ -11,18 +15,26 @@ import NotFound from './pages/NotFound'
 function App() {
 
   return (
-    <Routes>
-      <Route path='/' element={<HomePage />} />
-      <Route path='/about' element={<AboutPage />} />
-      <Route path='/login' element={<LoginPage />} />
-      <Route path='/register' element={<RegisterPage />} />
+    <>
 
-      <Route path='/tasks' element={<TasksPage />} />
-      <Route path='/tasks/new' element={<TaskFormPage />} />
-      <Route path='/tasks/1/edit' element={<TaskFormPage />} />
-      <Route path='/profile' element={<ProfilePege />} />
-      <Route path='*' element={<NotFound />} />
-    </Routes>
+      <NavBar />
+
+      <Container className={'py-5'}>
+        <Routes>
+          <Route path='/' element={<HomePage />} />
+          <Route path='/about' element={<AboutPage />} />
+          <Route path='/login' element={<LoginPage />} />
+          <Route path='/register' element={<RegisterPage />} />
+
+          <Route path='/tasks' element={<TasksPage />} />
+          <Route path='/tasks/new' element={<TaskFormPage />} />
+          <Route path='/tasks/1/edit' element={<TaskFormPage />} />
+          <Route path='/profile' element={<ProfilePege />} />
+          <Route path='*' element={<NotFound />} />
+        </Routes>
+      </Container>
+
+    </>
   )
 }
 
