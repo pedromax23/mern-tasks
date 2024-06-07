@@ -28,7 +28,7 @@ export const login = async (req, res) => {
         maxAge: 24 * 60 * 60 * 1000 // 1 day
     })
 
-    
+
 
     return res.json(findUser)
 
@@ -78,7 +78,19 @@ export const logout = (req, res) => {
 
 // Perfil
 export const profile = async (req, res) => {
-    const user = await Usuario.findByPk(req.userId)
+    try {
+        const user = await Usuario.findByPk(req.userId)
 
-    return res.json(user)
+        if (!user) {
+            return res.status(404).json({ message: 'Usuario no encontrado' });
+        }
+
+        const userJson = user.toJSON();
+
+        delete userJson.password;
+
+        return res.json(userJson)
+    } catch (error) {
+        return res.status(500).json({ message: 'Error interno del servidor' });
+    }
 };

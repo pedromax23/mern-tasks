@@ -13,7 +13,7 @@ const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
     port: DB_PORT
 });
 
-async function testConnection() {
+export const testConnection = async () => {
     try {
         await sequelize.authenticate();
         console.log('Connection has been established successfully.');
@@ -21,8 +21,6 @@ async function testConnection() {
         console.error('Unable to connect to the database:', error);
       }
 }
-
-testConnection();
 
 export class Tarea extends Model {}
 Tarea.init(

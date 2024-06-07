@@ -4,12 +4,14 @@ import taskRoutes from './routes/tasks.routes.js';
 import authRoutes from './routes/auth.routes.js';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
+import { testConnection } from './db.js';
+import { ORIGIN } from './config.js';
 
 const app = express();
 
 // Middlewares
 app.use(cors({
-    origin: 'http://localhost:5173', // Las direcciones que pueden pedir datos a esta api
+    origin: ORIGIN, // Las direcciones que pueden pedir datos a esta api
     credentials: true // Por que se envian datos por cookies 
 }));
 app.use(morgan('dev'));
@@ -20,6 +22,9 @@ app.use(express.urlencoded({ extended: false }));
 
 // Routes
 app.get('/', (req, res) => res.json({ message: "Welcome to my API" }));
+app.get('/api/ping', async (req, res) => {
+    await testConnection()
+});
 app.use('/api', taskRoutes)
 app.use('/api', authRoutes)
 
