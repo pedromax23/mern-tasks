@@ -16,9 +16,8 @@ function RegisterPage() {
   const onSubmit = handleSubmit(async (data) => {
     const user = await singnup(data);
 
-    if (user) {
-      navigate('/profile')
-    }
+    if (user) navigate('/tasks')
+
   });
 
   return (
@@ -73,7 +72,7 @@ function RegisterPage() {
           <Button>Register</Button>
 
           <div className='flex justify-between my-4'>
-            <p>¿Ya tienes una cuenta?</p>
+            <p className='mr-4'>¿Ya tienes una cuenta?</p>
             <Link to="/login" className='font-bold'>
               Login
             </Link>

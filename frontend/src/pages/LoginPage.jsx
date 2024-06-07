@@ -7,17 +7,17 @@ function LoginPage() {
 
   const {
     register,
-    handleSubmit
+    handleSubmit,
+    formState: { errors }
   } = useForm()
-  const { login, errors } = useAuth();
+  const { login, errors: loginErrors } = useAuth();
   const navigate = useNavigate()
 
   const onSubmit = handleSubmit(async (data) => {
     const user = await login(data);
 
-    if (user) {
-      navigate('/profile')
-    }
+    if (user) navigate('/tasks')
+
   })
 
   return (
@@ -25,8 +25,8 @@ function LoginPage() {
       <Card>
 
         {
-          errors && (
-            errors.map((err, id) => (
+          loginErrors && (
+            loginErrors.map((err, id) => (
               <p key={'error' + id} className='bg-red-500 text-white p-2 text-center'>
                 {err}
               </p>
@@ -45,6 +45,7 @@ function LoginPage() {
               required: true
             })}
           />
+          {errors.email && <p className='text-red-500'>Email es requerido</p>}
 
           <Label htmlFor="password">
             Password
@@ -54,13 +55,14 @@ function LoginPage() {
               required: true
             })}
           />
+          {errors.password && <p className='text-red-500'>Email es requerido</p>}
 
           <Button>
             Login
           </Button>
 
           <div className='flex justify-between my-4'>
-            <p>¿No tienes una cuenta?</p>
+            <p className='mr-4'>¿No tienes una cuenta?</p>
             <Link to="/register" className='font-bold'>
               Register
             </Link>
