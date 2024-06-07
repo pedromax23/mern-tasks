@@ -1,11 +1,13 @@
 import { Link, useLocation } from 'react-router-dom';
-import { navigation } from './navigation.js';
+import { privateRoutes, publicRoutes } from './navigation.js';
 import { Container } from '../ui/Container.jsx'
+import { useAuth } from '../../context/AuthContext.jsx';
 
 function NavBar() {
 
     const location = useLocation()
-    console.log(location)
+
+    const { isAuth, logout } = useAuth();
 
     return (
         <nav className='bg-zinc-950'>
@@ -15,15 +17,36 @@ function NavBar() {
                 </Link>
 
                 <ul className='flex gap-x-2'>
-                    {navigation.map(({ path, name }) => (
-                        <li key={path} className={
-                            `text-slate-300 px-3 py-1 ${location.pathname === path && "bg-sky-500"}`
-                        }>
-                            <Link to={path}>
-                                {name}
-                            </Link>
-                        </li>
-                    ))}
+                    {isAuth
+                        ?
+                        <>
+                            {privateRoutes.map(({ path, name }) => (
+                                <li key={path} className={
+                                    `text-slate-300 px-3 py-1 ${location.pathname === path && "bg-sky-500"}`
+                                }>
+                                    <Link to={path}>
+                                        {name}
+                                    </Link>
+                                </li>
+                            ))}
+
+                            <li onClick={() => {
+                                logout();
+                            }}>
+                                Logout
+                            </li>
+                        </>
+
+                        : publicRoutes.map(({ path, name }) => (
+                            <li key={path} className={
+                                `text-slate-300 px-3 py-1 ${location.pathname === path && "bg-sky-500"}`
+                            }>
+                                <Link to={path}>
+                                    {name}
+                                </Link>
+                            </li>
+                        ))}
+
                 </ul>
             </Container >
         </nav>

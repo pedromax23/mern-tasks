@@ -8,10 +8,7 @@ export const getAllTasks = async (req, res) => {
         }
     })
 
-    res.json({
-        count: tasks.length,
-        data: tasks
-    })
+    res.json(tasks)
 };
 
 // Obtener una sola tarea
@@ -28,6 +25,15 @@ export const createTask = async (req, res, next) => {
     try {
         const { title, descripccion } = req.body;
 
+        const findTask = await Tarea.findOne({
+            where: {
+                title,
+                usuario_id: req.userId,
+            }
+        })
+        console.log(findTask)
+        if(findTask) return res.status(409).json({ message: "La tarea ya existe" })
+
         const creandoTarea = await Tarea.create({
             title,
             descripccion,
@@ -36,9 +42,7 @@ export const createTask = async (req, res, next) => {
 
         res.json(creandoTarea)
     } catch (error) {
-        if (error.name === 'SequelizeUniqueConstraintError') {
-            return res.status(409).json({ message: "La tarea ya existe" })
-        }
+
         next(error)
     }
 
@@ -57,11 +61,7 @@ export const updateTask = async (req, res) => {
         descripccion
     })
 
-    return res.json({
-        id,
-        title: updateTask.title,
-        descripccion: updateTask.descripccion
-    })
+    return res.json(updateTask)
 };
 
 // Eliminar tarea
