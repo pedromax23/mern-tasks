@@ -8,6 +8,10 @@ import { testConnection } from './db.js';
 import { ORIGIN } from './config.js';
 import path from 'path';
 
+// Definir __dirname para módulos ES
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const app = express();
 
 // Middlewares
