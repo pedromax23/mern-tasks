@@ -64,9 +64,9 @@ function TaskFormPage() {
             errors.title && <span className='text-red-500'>El titulo es requerido</span>
           }
 
-          <Label htmlFor={'descripcion'}>Descripcción</Label>
+          <Label htmlFor={'descripcion'}>Descripción</Label>
           <Textarea
-            placeholder="Descripcción"
+            placeholder="Descripción"
             rows={3}
             {...register('descripcion')}
           ></Textarea>
