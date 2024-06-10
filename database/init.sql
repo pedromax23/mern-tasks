@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `tareas`;
 CREATE TABLE `tareas` (
   `id` int NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL,
-  `descripccion` text,
+  `descripcion` text,
   `usuario_id` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `usuario_id_idx` (`usuario_id`)

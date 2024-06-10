@@ -9,13 +9,13 @@ export const createTaskSchema = z.object({
     .min(1)
     .max(100),
 
-    descripccion: z
+    descripcion: z
     .string({
-        required_error: "La descripcción es requerida",
-        invalid_type_error: "La descripccón debe ser un texto",
+        required_error: "La descripción es requerida",
+        invalid_type_error: "La descripcón debe ser un texto",
     })
     .max(255, {
-        message: 'La descripcción no puede tener mas de 255 caracteres'
+        message: 'La descripción no puede tener mas de 255 caracteres'
     })
     .optional()
 })
@@ -30,13 +30,13 @@ export const updateTaskSchema = z.object({
     .max(100)
     .optional(),
     
-    descripccion: z
+    descripccon: z
     .string({
-        required_error: "La descripcción es requerida",
-        invalid_type_error: "La descripccón debe ser un texto",
+        required_error: "La descripción es requerida",
+        invalid_type_error: "La descripcón debe ser un texto",
     })
     .max(255, {
-        message: 'La descripcción no puede tener mas de 255 caracteres'
+        message: 'La descripción no puede tener mas de 255 caracteres'
     })
     .optional()
 })

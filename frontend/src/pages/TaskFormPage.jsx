@@ -34,7 +34,7 @@ function TaskFormPage() {
     if (params.id) {
       loadTask(params.id).then(task => {
         setValue('title', task.title)
-        setValue('descripccion', task.descripccion)
+        setValue('descripcion', task.descripcion)
       })
     }
   }, []);
@@ -64,11 +64,11 @@ function TaskFormPage() {
             errors.title && <span className='text-red-500'>El titulo es requerido</span>
           }
 
-          <Label htmlFor={'descripccion'}>Descripcción</Label>
+          <Label htmlFor={'descripcion'}>Descripcción</Label>
           <Textarea
             placeholder="Descripcción"
             rows={3}
-            {...register('descripccion')}
+            {...register('descripcion')}
           ></Textarea>
 
           <Button>

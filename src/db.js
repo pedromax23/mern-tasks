@@ -34,7 +34,7 @@ Tarea.init(
             type: DataTypes.STRING(100),
             allowNull: false
         },
-        descripccion: {
+        descripcion: {
             type: DataTypes.TEXT(),
             allowNull: true
         },

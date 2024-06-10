@@ -22,16 +22,16 @@ export const login = async (req, res) => {
 
     const token = await createAccessToken({ id: findUser.id })
     res.cookie('token', token, {
-        // httpOnly: true,
+        httpOnly: true,
         secure: true, // Para que se pueda ver en el navegador
         sameSite: 'none', // Solo entre dominios se pueden consultar
         maxAge: 24 * 60 * 60 * 1000 // 1 day
     })
 
+    const userJson = findUser.toJSON();
+    delete userJson.password;
 
-
-    return res.json(findUser)
-
+    return res.json(userJson);
 };
 
 // Registro de usuarios
@@ -52,13 +52,16 @@ export const register = async (req, res, next) => {
 
         const token = await createAccessToken({ id: createUser.id })
         res.cookie('token', token, {
-            // httpOnly: true,
+            httpOnly: true,
             secure: true, // Para que se pueda ver en el navegador
             sameSite: 'none', // Solo entre dominios se pueden consultar
             maxAge: 24 * 60 * 60 * 1000 // 1 day
         })
 
-        return res.json(createUser)
+        const userJson = createUser.toJSON();
+        delete userJson.password;
+
+        return res.json(userJson)
     } catch (error) {
         if (error.name === 'SequelizeUniqueConstraintError') {
             return res.status(409).json({ message: "El email del usuario ya esta registrado" })

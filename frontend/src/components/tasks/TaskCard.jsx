@@ -13,7 +13,7 @@ function TaskCard({ task }) {
         <Card className={"px-5 py-4 flex flex-col justify-center"}>
             <div>
                 <h1 className="text-2xl font-bold">{task.title}</h1>
-                <p>{task.descripccion}</p>
+                <p>{task.descripcion}</p>
             </div>
             <div className='my-2 flex justify-end gap-x-2'>
                 <Button onClick={() => navigate(`/tasks/${task.id}/edit`)}><BiPencil /> Editar</Button>

@@ -23,7 +23,7 @@ export const getTask = async (req, res) => {
 // Crear tarea
 export const createTask = async (req, res, next) => {
     try {
-        const { title, descripccion } = req.body;
+        const { title, descripcion } = req.body;
 
         const findTask = await Tarea.findOne({
             where: {
@@ -36,7 +36,7 @@ export const createTask = async (req, res, next) => {
 
         const creandoTarea = await Tarea.create({
             title,
-            descripccion,
+            descripcion,
             usuario_id: req.userId
         },)
 
@@ -51,14 +51,14 @@ export const createTask = async (req, res, next) => {
 // Actualizar tarea
 export const updateTask = async (req, res) => {
     const {id} = req.params;
-    const {title, descripccion} = req.body;
+    const {title, descripcion} = req.body;
 
     const tarea = await Tarea.findByPk(id)
     if(!tarea) return res.status(404).json({message: 'No existe una tarea con ese ID'})
 
     const updateTask = await tarea.update({
         title,
-        descripccion
+        descripcion
     })
 
     return res.json(updateTask)
